@@ -1,0 +1,26 @@
+# TYPEFORGE
+
+Typing learning, tests, racing and battles. Built in phases; each phase is a git branch.
+
+## Phase 1: setup + authentication
+React + TypeScript + Vite + Tailwind client, Express + TypeScript + MongoDB server, JWT auth in an httpOnly cookie.
+
+### Run
+1. `cp .env.example .env` and set `JWT_SECRET` (long random string). Never commit `.env`.
+2. Start MongoDB locally or use a MongoDB Atlas URI in `MONGODB_URI`.
+3. `npm install`
+4. `npm run dev` (client http://localhost:5173, API http://localhost:4000)
+5. `npm run test`, `npm run build`
+
+### API
+`POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`, `GET /api/health`
+
+### Git
+```
+git init && git checkout -b phase-1-setup-auth
+git add . && git commit -m "Phase 1: setup and auth"
+```
+Later phases arrive as new zips; unzip over the project on a new branch (`phase-2-...`).
+
+### Deployment
+Client: Netlify/Vercel (`client/public/_redirects` handles SPA routing; set the API URL/proxy). Server: Render/Railway/Fly (long-running Node host, not Netlify static).
