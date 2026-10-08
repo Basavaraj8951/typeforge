@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{@apply bg-slate-50 text-slate-900}
+.k-hit{animation:khit .15s}.k-nope{animation:kshake .25s}.k-cur{box-shadow:-2px 0 0 #e8590c}
+@keyframes khit{50%{transform:scale(.88)}}@keyframes kshake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.k-hit,.k-nope{animation:none}}
