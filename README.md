@@ -2,6 +2,9 @@
 
 Typing learning, tests, racing and battles. Built in phases; each phase is a git branch.
 
+## Phase 6: typing car race vs AI
+`/race`: 1-3 AI cars (easy 25-40, medium 40-60, hard 60-80, expert 80-110 WPM). The server creates the race, fixes the text, AI speeds and a start time; the client animates smoothly (speed-capped). `POST /api/races/:id/finish` recomputes progress, speed and accuracy from the typed text, checks timing, decides the place, and only rewards finished, unflagged races (XP, race wins, First Race / wins badges). `GET /api/races/recent`. Branch: `git checkout -b phase-6-car-race`.
+
 ## Phase 5: statistics, progress, heatmap, achievements
 `/progress` (Recharts: WPM and accuracy graphs, daily/weekly/monthly averages, consistency, keyboard heatmap, hardest keys), 22 achievements (code-defined in `server/src/config/achievements.ts`, unlocks stored in `UserAchievement`, +25 XP each; race/battle ones unlock in later phases), weak-key practice (`/weak-practice`, `GET /api/practice/weak`). API: `GET /api/progress/analytics?range=7|30|90|all`, `GET /api/achievements`. Run `npm install` again (new dependency: recharts). Branch: `git checkout -b phase-5-statistics-achievements`.
 

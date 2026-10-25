@@ -11,5 +11,7 @@ const userSchema = new Schema({
   testsCompleted: { type: Number, default: 0 },
   streak: { type: Number, default: 0 },
   lastActiveDay: { type: String, default: '' },
+  races: { type: Number, default: 0 },
+  raceWins: { type: Number, default: 0 },
 }, { timestamps: true });
 export const User = model('User', userSchema);

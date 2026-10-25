@@ -10,6 +10,7 @@ import progress from './routes/progress.js';
 import lessons from './routes/lessons.js';
 import practice from './routes/practice.js';
 import achievements from './routes/achievements.js';
+import races from './routes/races.js';
 
 export const app = express();
 app.use(helmet());
@@ -21,6 +22,7 @@ app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, limit: 100 }), auth);
 app.use('/api/tests', rateLimit({ windowMs: 60 * 1000, limit: 60 }), tests);
 app.use('/api/progress', progress);
 app.use('/api/achievements', achievements);
+app.use('/api/races', rateLimit({ windowMs: 60 * 1000, limit: 40 }), races);
 app.use('/api/practice', rateLimit({ windowMs: 60 * 1000, limit: 60 }), practice);
 app.use('/api/lessons', rateLimit({ windowMs: 60 * 1000, limit: 120 }), lessons);
 app.use('/api', (_req, res) => res.status(404).json({ error: 'Not found.' }));

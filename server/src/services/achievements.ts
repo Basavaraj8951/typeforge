@@ -1,8 +1,8 @@
-import type { Types } from 'mongoose';
+﻿import type { Types } from 'mongoose';
 import { earned, type AStats } from '../config/achievements.js';
 import { UserAchievement } from '../models/UserAchievement.js';
 
-/** Unlocks newly earned badges. Safe to call repeatedly: the unique index prevents duplicates. */
+/** Unlocks newly earned badges without creating duplicates. */
 export async function award(
   userId: Types.ObjectId | string,
   stats: AStats
@@ -13,11 +13,11 @@ export async function award(
     return [];
   }
 
-  const achievementIds = await UserAchievement
+  const ids = await UserAchievement
     .find({ user: userId })
     .distinct('achievementId') as unknown as string[];
 
-  const have = new Set<string>(achievementIds);
+  const have = new Set<string>(ids);
 
   const fresh: {
     id: string;
@@ -27,10 +27,9 @@ export async function award(
 
   for (const a of ok) {
     if (have.has(a.id)) {
-      continue;
+      continue
     }
-
-    try {
+      try {
       await UserAchievement.create({
         user: userId,
         achievementId: a.id,
@@ -42,7 +41,7 @@ export async function award(
         icon: a.icon,
       });
     } catch {
-      // Unlocked concurrently
+      // An achievement may have been unlocked concurrently.
     }
   }
 
