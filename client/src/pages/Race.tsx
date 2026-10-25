@@ -59,7 +59,36 @@ function Racing({ info, onDone, onErr }: { info: Info; onDone: (r: Result) => vo
         {label && <div className="absolute inset-0 grid place-items-center bg-black/40 text-4xl font-extrabold text-white" aria-live="assertive">{label}</div>}
       </div>
       <div className="mt-3"><TextView text={text} typed={typed} /></div>
-      <input ref={input} aria-label="Typing input" autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} value="" className="fixed left-0 top-0 h-px w-px opacity-0" onChange={e => { for (const c of e.target.value) press(c); }} onKeyDown={e => { if (e.key === 'Backspace') back(); }} />
+     
+<input
+  ref={input}
+  aria-label="Typing input"
+  autoCapitalize="off"
+  autoComplete="off"
+  autoCorrect="off"
+  spellCheck={false}
+  value={typed}
+  className="fixed left-0 top-0 h-px w-px opacity-0"
+  onChange={e => {
+    const next = e.target.value;
+    if (next.length > typed.length) {
+      for (const c of next.slice(typed.length)) {
+        press(c);
+      }
+    } else if (next.length < typed.length) {
+      for (let i = typed.length; i > next.length; i--) {
+        back();
+      }
+    }
+  }}
+  onKeyDown={e => {
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      back();
+    }
+  }}
+/>
+
       <p className="mt-2 text-sm text-slate-500">A wrong letter stops your car until you fix it with Backspace.</p>
     </main>);
 }
