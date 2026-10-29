@@ -11,6 +11,7 @@ import Lessons from './pages/Lessons';
 import Lesson from './pages/Lesson';
 import Practice from './pages/Practice';
 import Race from './pages/Race';
+import Live from './pages/Live';
 import PracticeHub from './pages/PracticeHub';
 import Progress from './pages/Progress';
 import WeakPractice from './pages/WeakPractice';
@@ -24,6 +25,8 @@ export default function App() {
         <Route path="/test" element={<Test />} />
         <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
         <Route path="/weak-practice" element={<ProtectedRoute><WeakPractice /></ProtectedRoute>} />
+        <Route path="/race/live" element={<ProtectedRoute><Live type="race" /></ProtectedRoute>} />
+        <Route path="/battle" element={<ProtectedRoute><Live type="battle" /></ProtectedRoute>} />
         <Route path="/race" element={<ProtectedRoute><Race /></ProtectedRoute>} />
         <Route path="/practice" element={<ProtectedRoute><PracticeHub /></ProtectedRoute>} />
         <Route path="/intermediate" element={<ProtectedRoute><Practice mode="intermediate" /></ProtectedRoute>} />

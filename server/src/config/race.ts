@@ -41,3 +41,9 @@ export function standings(ai: Ai[], place: number, you: { finished: boolean; sec
 }
 /** Rewards only for finished, unflagged races. */
 export const raceXp = (place: number, finished: boolean, flagged: boolean) => (!finished || flagged ? 0 : 15 + (place === 1 ? 30 : place === 2 ? 15 : place === 3 ? 5 : 0));
+/** ~650-900 characters of plain prose so a battle ends by HP, not by running out of text. */
+export function battleText(): string {
+  const prose = shuffle(PASSAGES.filter(p => p.category !== 'programming' && p.difficulty !== 'expert'));
+  let t = ''; for (let i = 0; t.length < 650; i++) t += (t ? ' ' : '') + prose[i % prose.length].text;
+  return t;
+}

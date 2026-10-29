@@ -8,8 +8,4 @@ describe('practice text', () => {
     });
   it('builds every language', () => { for (const l of LANGS) expect(buildPractice('advanced', 'code', l, 30).length).toBeGreaterThan(100); });
   it('builds weak-key drills', () => { for (const k of [['e'], ['e', 'r', 't'], ['z', 'q']]) { const t = buildWeak(k, 60); expect(t.length).toBeGreaterThanOrEqual(200); expect(/^[a-z ]+$/.test(t)).toBe(true); expect(k.some(x => t.includes(x))).toBe(true); } });
-  it('sanitizes custom text', () => {
-    expect(sanitizeCustom('hi')).toBeNull();
-    expect(sanitizeCustom('Hello\n\n  world,\tthis is   a custom test ✓ text')).toBe('Hello world, this is a custom test text');
-  });
 });

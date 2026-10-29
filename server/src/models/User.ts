@@ -13,5 +13,7 @@ const userSchema = new Schema({
   lastActiveDay: { type: String, default: '' },
   races: { type: Number, default: 0 },
   raceWins: { type: Number, default: 0 },
+  battles: { type: Number, default: 0 },
+  battleWins: { type: Number, default: 0 },
 }, { timestamps: true });
 export const User = model('User', userSchema);

@@ -59,36 +59,7 @@ function Racing({ info, onDone, onErr }: { info: Info; onDone: (r: Result) => vo
         {label && <div className="absolute inset-0 grid place-items-center bg-black/40 text-4xl font-extrabold text-white" aria-live="assertive">{label}</div>}
       </div>
       <div className="mt-3"><TextView text={text} typed={typed} /></div>
-     
-<input
-  ref={input}
-  aria-label="Typing input"
-  autoCapitalize="off"
-  autoComplete="off"
-  autoCorrect="off"
-  spellCheck={false}
-  value={typed}
-  className="fixed left-0 top-0 h-px w-px opacity-0"
-  onChange={e => {
-    const next = e.target.value;
-    if (next.length > typed.length) {
-      for (const c of next.slice(typed.length)) {
-        press(c);
-      }
-    } else if (next.length < typed.length) {
-      for (let i = typed.length; i > next.length; i--) {
-        back();
-      }
-    }
-  }}
-  onKeyDown={e => {
-    if (e.key === 'Backspace') {
-      e.preventDefault();
-      back();
-    }
-  }}
-/>
-
+      <input ref={input} aria-label="Typing input" autoCapitalize="off" autoComplete="off" autoCorrect="off" spellCheck={false} value="" className="fixed left-0 top-0 h-px w-px opacity-0" onChange={e => { for (const c of e.target.value) press(c); }} onKeyDown={e => { if (e.key === 'Backspace') back(); }} />
       <p className="mt-2 text-sm text-slate-500">A wrong letter stops your car until you fix it with Backspace.</p>
     </main>);
 }
@@ -118,6 +89,6 @@ export default function Race() {
       {err && <p role="alert" className="mt-3 text-red-600">{err}</p>}
       <button onClick={start} disabled={busy} className="mt-5 min-h-12 rounded-xl bg-ember px-6 font-bold text-white disabled:opacity-60">{busy ? 'Setting up…' : 'Start race'}</button>
       {hist && hist.recent.length > 0 && <section className="mt-6"><h2 className="font-bold">Your races · {hist.wins} wins from {hist.races}</h2><ul className="mt-2 space-y-1 text-sm">{hist.recent.map((r, i) => <li key={i} className="flex justify-between rounded-lg bg-white px-3 py-2 border border-slate-200"><span className="capitalize">{r.difficulty}</span><span>{ord(r.place)} of {r.total} · {Math.round(r.wpm)} WPM</span></li>)}</ul></section>}
-      <p className="mt-6 text-sm text-slate-500">Racing against real players arrives in the next phase. <Link to="/test" className="underline">Warm up with a typing test</Link>.</p>
+      <p className="mt-6 text-sm text-slate-500">Want real opponents? <Link to="/race/live" className="underline">Race live players</Link> or <Link to="/battle" className="underline">enter a typing battle</Link>. Or <Link to="/test" className="underline">warm up with a typing test</Link>.</p>
     </main>);
 }

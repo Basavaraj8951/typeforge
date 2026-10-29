@@ -42,7 +42,7 @@ r.post('/:id/finish', async (req: AuthRequest, res) => {
     const u = await User.findById(req.userId);
     if (u) {
       u.races += 1; if (place === 1) u.raceWins += 1;
-      achievements = await award(u._id, { tests: u.testsCompleted, bestWpm: u.bestWpm, perfect: false, streak: u.streak, races: u.races, battles: 0, raceWins: u.raceWins, battleWins: 0 });
+      achievements = await award(u._id, { tests: u.testsCompleted, bestWpm: u.bestWpm, perfect: false, streak: u.streak, races: u.races, battles: u.battles, raceWins: u.raceWins, battleWins: u.battleWins });
       u.xp += xpBase + achievements.length * 25; await u.save();
     }
   }

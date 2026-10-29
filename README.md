@@ -2,6 +2,9 @@
 
 Typing learning, tests, racing and battles. Built in phases; each phase is a git branch.
 
+## Phase 7: real-time races and battles (Socket.IO)
+`/race/live` (2-4 players) and `/battle` (1v1): quick match, private rooms with codes like `TF-8K29`, host start, 5s server countdown. Auth uses the same httpOnly cookie. Clients send single key events; the server rebuilds what each player typed, ignores impossible speed (>30 chars/s), keeps all timing, decides finish order, HP, combos and winners, and pays rewards (2+ humans, races finish only, battles 15s+, 30 rewarded matches/day). Reconnect restores the match (30s race / 10s battle grace, then forfeit). Rooms live in memory: run one server instance, or add the Socket.IO Redis adapter to scale. Test it with two browsers (one normal, one private window) logged into different accounts. Branch: `git checkout -b phase-7-multiplayer`.
+
 ## Phase 6: typing car race vs AI
 `/race`: 1-3 AI cars (easy 25-40, medium 40-60, hard 60-80, expert 80-110 WPM). The server creates the race, fixes the text, AI speeds and a start time; the client animates smoothly (speed-capped). `POST /api/races/:id/finish` recomputes progress, speed and accuracy from the typed text, checks timing, decides the place, and only rewards finished, unflagged races (XP, race wins, First Race / wins badges). `GET /api/races/recent`. Branch: `git checkout -b phase-6-car-race`.
 

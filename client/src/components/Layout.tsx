@@ -8,7 +8,7 @@ export default function Layout() {
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-2.5">
           <Link to="/" className="text-xl font-extrabold">Type<span className="text-ember">Forge</span></Link>
-          <nav aria-label="Main" className="hidden gap-1 md:flex"><NavLink to="/learn" className={cls}>Learn</NavLink><NavLink to="/practice" className={cls}>Practice</NavLink>{user && <NavLink to="/progress" className={cls}>Progress</NavLink>}<NavLink to="/test" className={cls}>Typing test</NavLink><NavLink to="/race" className={cls}>Race</NavLink>{user && <NavLink to="/dashboard" className={cls}>Dashboard</NavLink>}</nav>
+          <nav aria-label="Main" className="hidden gap-1 md:flex"><NavLink to="/learn" className={cls}>Learn</NavLink><NavLink to="/practice" className={cls}>Practice</NavLink>{user && <NavLink to="/progress" className={cls}>Progress</NavLink>}<NavLink to="/test" className={cls}>Typing test</NavLink><NavLink to="/race" className={cls}>Race</NavLink><NavLink to="/battle" className={cls}>Battle</NavLink>{user && <NavLink to="/dashboard" className={cls}>Dashboard</NavLink>}</nav>
           <div className="flex items-center gap-2 text-sm">{user ? <><span className="hidden sm:inline text-slate-600">{user.username}</span><button onClick={logout} className="rounded-lg border border-slate-300 px-3 py-1.5">Log out</button></> : <><Link to="/login" className="px-2 py-1.5">Log in</Link><Link to="/register" className="rounded-lg bg-ember px-3 py-1.5 font-bold text-white">Sign up free</Link></>}</div>
         </div>
       </header>

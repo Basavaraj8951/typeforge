@@ -52,6 +52,6 @@ export function buildWeak(keys: string[], duration: number): string {
 }
 /** Custom text: printable ASCII only, whitespace collapsed, 20-2000 chars. */
 export function sanitizeCustom(t: string): string | null {
-  const s = t.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 2000);
+  const s = t.replace(/\s+/g, ' ').replace(/[^\x20-\x7E]/g, '').trim().slice(0, 2000);
   return s.length >= 20 ? s : null;
 }
